@@ -413,7 +413,7 @@
     </h3>
     <p class="sub-desc">
       Enterprise rewrite with a cross-platform C++ inference engine (whisper.cpp, gRPC), Go BFF gateway, and React frontend &mdash;
-      dual-mode architecture that runs identically on local LAN or cloud EKS. 21 Architecture Decision Records document every trade-off.
+      dual-mode architecture that runs identically on local LAN or cloud EKS. 33 Architecture Decision Records document every trade-off.
     </p>
     <div class="repo-links">
       <a href="https://github.com/BinHsu/aegis-core" target="_blank" rel="noopener">
@@ -428,19 +428,19 @@
       <span>Bazel</span>
       <span>gRPC</span>
       <span>whisper.cpp</span>
-      <span>21 ADRs</span>
+      <span>33 ADRs</span>
     </div>
 
     <hr>
 
     <h3>
       aegis-aws-landing-zone <span style="color: var(--muted); font-weight: 400;">&mdash; V2, Cloud Infra</span>
-      <span class="version-badge dev">Near Production</span>
+      <span class="version-badge shipped">Phase 3c Live</span>
     </h3>
     <p class="sub-desc">
       Multi-account AWS landing zone built from zero &mdash; Organizations with SCPs, Identity Center, GitHub OIDC federation,
-      Terraform with native state locking, EKS with ArgoCD GitOps, and Prometheus/Grafana observability.
-      17 Architecture Decision Records. Fork-and-deploy from a single YAML config.
+      Terraform with native state locking, EKS 1.32 + Karpenter v1 on Spot with ArgoCD GitOps, and Prometheus/Grafana observability.
+      19 Architecture Decision Records plus a running incident postmortem log. Fork-and-deploy from a single YAML config.
     </p>
     <div class="repo-links">
       <a href="https://github.com/BinHsu/aegis-aws-landing-zone" target="_blank" rel="noopener">
@@ -455,7 +455,7 @@
       <span>ArgoCD</span>
       <span>GitHub Actions OIDC</span>
       <span>Prometheus</span>
-      <span>17 ADRs</span>
+      <span>19 ADRs</span>
       <span>ISO 27001</span>
     </div>
   </div>
