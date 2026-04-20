@@ -13,10 +13,10 @@ and **platform infrastructure** (5 yrs — 155 CI/CD pipelines, Kubernetes, 5 AW
 | | Repo | Mode | Status | Stack |
 |---|---|---|---|---|
 | V1 | [**Aegis-Prompter**](https://github.com/BinHsu/Aegis-Prompter) | LAN | Shipped | Python · MLX-Whisper · Sentence Transformers · Streamlit · Apple NPU |
-| V2 | [**aegis-core**](https://github.com/BinHsu/aegis-core) | LAN/Cloud | Near Production | C++ · Go · TypeScript · Bazel · gRPC · whisper.cpp · 21 ADRs |
-| V2 | [**aegis-aws-landing-zone**](https://github.com/BinHsu/aegis-aws-landing-zone) | Cloud Infra | Near Production | AWS Organizations · Terraform · EKS · ArgoCD · GitHub OIDC · Prometheus · 17 ADRs |
+| V2 | [**aegis-core**](https://github.com/BinHsu/aegis-core) | LAN/Cloud | Near Production | C++ · Go · TypeScript · Bazel · gRPC · whisper.cpp · 33 ADRs |
+| V2 | [**aegis-aws-landing-zone**](https://github.com/BinHsu/aegis-aws-landing-zone) | Cloud Infra | Phase 3c Live | AWS Organizations · Terraform · EKS 1.32 · Karpenter v1 · ArgoCD · GitHub OIDC · Prometheus · 19 ADRs |
 
-**38 Architecture Decision Records** document every trade-off across both V2 repos.
+**52 Architecture Decision Records** document every trade-off across both V2 repos, alongside a running [incident postmortem log](https://github.com/BinHsu/aegis-aws-landing-zone/blob/main/docs/incidents.md) and [recruiter-oriented competency notes](https://github.com/BinHsu/aegis-aws-landing-zone/blob/main/docs/interview-notes.md).
 
 The landing zone implements **GitOps** (ArgoCD + GitHub Actions plan/apply), **DevSecOps** (Checkov, SCPs, zero static credentials, OIDC federation), and **FinOps** discipline (budget alerts, teardown automation, spot-first compute, ~$5/month baseline).
 
