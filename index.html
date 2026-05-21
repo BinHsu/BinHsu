@@ -301,7 +301,67 @@
     color: var(--muted);
   }
 
+  /* ── Topology Table ── */
+  .topology-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 18px;
+    font-size: 13.5px;
+  }
+  .topology-table th,
+  .topology-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .topology-table th {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--light);
+  }
+  .topology-table tr:last-child td { border-bottom: none; }
+  .topology-table td.tier {
+    font-weight: 700;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+  .topology-table td.industry { color: var(--slate); }
+  .topology-table td.stack { color: var(--slate); }
+  .topology-table td.repo a { color: var(--slate); text-decoration: none; }
+  .topology-table td.repo a:hover { color: var(--accent); }
+  .topology-table td.repo code {
+    font-size: 12.5px;
+    background: var(--light);
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
   /* ── Responsive ── */
+  @media (max-width: 520px) {
+    /* Stack the topology table on narrow screens */
+    .topology-table thead { display: none; }
+    .topology-table,
+    .topology-table tbody,
+    .topology-table tr,
+    .topology-table td { display: block; width: 100%; }
+    .topology-table tr {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .topology-table tr:last-child { border-bottom: none; }
+    .topology-table td { padding: 3px 0; border: none; }
+    .topology-table td.tier { font-size: 14px; margin-bottom: 4px; }
+    .topology-table td.industry { font-size: 12.5px; color: var(--muted); margin-bottom: 6px; }
+    .topology-table td.stack { font-size: 13px; }
+    .topology-table td.repo { margin-top: 4px; }
+  }
   @media (max-width: 520px) {
     body { padding: 32px 16px 32px; }
     .hero h1 { font-size: 26px; }
@@ -414,29 +474,45 @@
     <p class="sub-desc">
       Industry-aligned split across four tiers, each with its own repo and ownership boundary:
     </p>
-    <p class="sub-desc">
-      &bull; <strong>Account fabric</strong> &mdash; AWS Landing Zone (Control Tower): Organizations, OUs, SCPs, Identity Center, GitHub OIDC, centralized security baseline. Repo: <code>aegis-aws-landing-zone</code>.<br>
-      &bull; <strong>Platform</strong> &mdash; platform engineering / paved road / IDP: EKS + Karpenter, ArgoCD, observability (extracted from the landing-zone per ADR-033). Repo: <code>aegis-platform</code>.<br>
-      &bull; <strong>Workload &mdash; application</strong> &mdash; cross-platform C++ inference engine (whisper.cpp + gRPC), Go BFF gateway, TypeScript React frontend; dual-mode LAN/Cloud. Repo: <code>aegis-core</code>.<br>
-      &bull; <strong>Workload &mdash; deploy</strong> &mdash; config repo (two-repo GitOps, Weaveworks) holding the K8s manifests for the application. Repo: <code>aegis-core-deploy</code>.
-    </p>
+    <table class="topology-table">
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>Industry name</th>
+          <th>Stack</th>
+          <th>Repo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tier">Account fabric</td>
+          <td class="industry">Landing Zone <span style="color: var(--muted);">(AWS Control Tower)</span></td>
+          <td class="stack">Organizations &middot; OUs &middot; SCPs &middot; Identity Center &middot; GitHub OIDC &middot; security baseline</td>
+          <td class="repo"><a href="https://github.com/BinHsu/aegis-aws-landing-zone" target="_blank" rel="noopener"><code>aegis-aws-landing-zone</code></a></td>
+        </tr>
+        <tr>
+          <td class="tier">Platform</td>
+          <td class="industry">Platform engineering <span style="color: var(--muted);">/ paved road / IDP</span></td>
+          <td class="stack">EKS + Karpenter &middot; ArgoCD &middot; observability <span style="color: var(--muted);">(extracted from landing-zone per ADR-033)</span></td>
+          <td class="repo"><code>aegis-platform</code></td>
+        </tr>
+        <tr>
+          <td class="tier">Workload &mdash; app</td>
+          <td class="industry">Application repo</td>
+          <td class="stack">C++ + whisper.cpp (gRPC) &middot; Go BFF gateway &middot; TypeScript React &middot; dual-mode LAN/Cloud</td>
+          <td class="repo"><a href="https://github.com/BinHsu/aegis-core" target="_blank" rel="noopener"><code>aegis-core</code></a></td>
+        </tr>
+        <tr>
+          <td class="tier">Workload &mdash; deploy</td>
+          <td class="industry">Config repo <span style="color: var(--muted);">(two-repo GitOps, Weaveworks)</span></td>
+          <td class="stack">K8s manifests for the application</td>
+          <td class="repo"><a href="https://github.com/BinHsu/aegis-core-deploy" target="_blank" rel="noopener"><code>aegis-core-deploy</code></a></td>
+        </tr>
+      </tbody>
+    </table>
     <p class="sub-desc">
       End-to-end GitOps loop: CI in the app repo builds + pushes the image to ECR, commits the new tag cross-repo into the deploy repo, ArgoCD in the platform tier reconciles. Architecture Decision Records document every trade-off plus a running incident postmortem log.
     </p>
-    <div class="repo-links">
-      <a href="https://github.com/BinHsu/aegis-aws-landing-zone" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" width="14" height="14"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        aegis-aws-landing-zone
-      </a>
-      <a href="https://github.com/BinHsu/aegis-core" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" width="14" height="14"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        aegis-core
-      </a>
-      <a href="https://github.com/BinHsu/aegis-core-deploy" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" width="14" height="14"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        aegis-core-deploy
-      </a>
-    </div>
     <div class="tags">
       <span>AWS Organizations</span>
       <span>SCPs</span>

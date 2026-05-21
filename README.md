@@ -22,16 +22,16 @@ A proof-of-concept teleprompter built in 2 days — Apple Silicon NPU transcript
 
 Industry-aligned split across four tiers, each with its own repo and ownership boundary:
 
-| Tier | Industry name | Repo |
-|---|---|---|
-| Account fabric | **Landing Zone** (AWS Control Tower) | [aegis-aws-landing-zone](https://github.com/BinHsu/aegis-aws-landing-zone) |
-| Platform | **Platform engineering** / paved road / IDP | `aegis-platform` |
-| Workload — app | **Application repo** | [aegis-core](https://github.com/BinHsu/aegis-core) |
-| Workload — deploy | **Config repo** (two-repo GitOps, Weaveworks) | [aegis-core-deploy](https://github.com/BinHsu/aegis-core-deploy) |
+| Tier | Industry name | Stack | Repo |
+|---|---|---|---|
+| Account fabric | **Landing Zone** (AWS Control Tower) | Organizations · OUs · SCPs · Identity Center · GitHub OIDC · security baseline | [aegis-aws-landing-zone](https://github.com/BinHsu/aegis-aws-landing-zone) |
+| Platform | **Platform engineering** / paved road / IDP | EKS + Karpenter · ArgoCD · observability *(extracted from landing-zone per ADR-033)* | `aegis-platform` |
+| Workload — app | **Application repo** | C++ + whisper.cpp (gRPC) · Go BFF gateway · TypeScript React; dual-mode LAN/Cloud | [aegis-core](https://github.com/BinHsu/aegis-core) |
+| Workload — deploy | **Config repo** (two-repo GitOps, Weaveworks) | K8s manifests for the application | [aegis-core-deploy](https://github.com/BinHsu/aegis-core-deploy) |
 
 **End-to-end GitOps loop:** CI in the app repo builds + pushes the image to ECR, commits the new tag cross-repo into the deploy repo, ArgoCD in the platform tier reconciles. Every trade-off documented in **Architecture Decision Records** across both V2 repos — see also the running [incident postmortem log](https://github.com/BinHsu/aegis-aws-landing-zone/blob/main/docs/incidents.md) and [recruiter-oriented competency notes](https://github.com/BinHsu/aegis-aws-landing-zone/blob/main/docs/interview-notes.md).
 
-**Stack:** cross-platform C++ inference engine (whisper.cpp + gRPC), Go BFF gateway, TypeScript React frontend; AWS Organizations + OUs + SCPs + Identity Center on the fabric; EKS + Karpenter + ArgoCD + observability on the platform tier (extracted from landing-zone per ADR-033). **DevSecOps** on the fabric (SCPs, zero static credentials, OIDC federation, gitleaks/push-protection); **GitOps** on the platform; **FinOps** end-to-end (budget alerts, teardown automation, spot-first compute, ~$5/month baseline).
+**DevSecOps** lives on the account fabric (SCPs, zero static credentials, OIDC federation, gitleaks/push-protection); **GitOps** moves with the platform tier; **FinOps** spans both (budget alerts, teardown automation, spot-first compute, ~$5/month baseline).
 
 ---
 
