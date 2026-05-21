@@ -8,17 +8,30 @@ and **platform infrastructure** (5 yrs — 155 CI/CD pipelines, Kubernetes, 5 AW
 
 ---
 
-#### Active Portfolio — Aegis Prompter
+#### V1 — Aegis Prompter (LAN)
 
-| | Repo | Mode | Status | Stack |
-|---|---|---|---|---|
-| V1 | [**Aegis-Prompter**](https://github.com/BinHsu/Aegis-Prompter) | LAN | Shipped | Python · MLX-Whisper · Sentence Transformers · Streamlit · Apple NPU |
-| V2 | [**aegis-core**](https://github.com/BinHsu/aegis-core) | LAN/Cloud | Near Production | C++ · Go · TypeScript · Bazel · gRPC · whisper.cpp · 33 ADRs |
-| V2 | [**aegis-aws-landing-zone**](https://github.com/BinHsu/aegis-aws-landing-zone) | Cloud Infra | Phase 3c Live | AWS Organizations · Terraform · EKS 1.32 · Karpenter v1 · ArgoCD · GitHub OIDC · Prometheus · 19 ADRs |
+| Repo | Status | Stack |
+|---|---|---|
+| [**Aegis-Prompter**](https://github.com/BinHsu/Aegis-Prompter) | Shipped | Python · MLX-Whisper · Sentence Transformers · Streamlit · Apple NPU |
 
-**52 Architecture Decision Records** document every trade-off across both V2 repos, alongside a running [incident postmortem log](https://github.com/BinHsu/aegis-aws-landing-zone/blob/main/docs/incidents.md) and [recruiter-oriented competency notes](https://github.com/BinHsu/aegis-aws-landing-zone/blob/main/docs/interview-notes.md).
+A proof-of-concept teleprompter built in 2 days — Apple Silicon NPU transcription, vector-semantic RAG (pure numpy, no external DB), and a multi-role web UI where staff inject tactical cues into the speaker's display in under 0.5s.
 
-The landing zone implements **GitOps** (ArgoCD + GitHub Actions plan/apply), **DevSecOps** (Checkov, SCPs, zero static credentials, OIDC federation), and **FinOps** discipline (budget alerts, teardown automation, spot-first compute, ~$5/month baseline).
+---
+
+#### V2 — Four-Tier Multi-Repo GitOps
+
+Industry-aligned split across four tiers, each with its own repo and ownership boundary:
+
+| Tier | Industry name | Repo |
+|---|---|---|
+| Account fabric | **Landing Zone** (AWS Control Tower) | [aegis-aws-landing-zone](https://github.com/BinHsu/aegis-aws-landing-zone) |
+| Platform | **Platform engineering** / paved road / IDP | `aegis-platform` |
+| Workload — app | **Application repo** | [aegis-core](https://github.com/BinHsu/aegis-core) |
+| Workload — deploy | **Config repo** (two-repo GitOps, Weaveworks) | [aegis-core-deploy](https://github.com/BinHsu/aegis-core-deploy) |
+
+**End-to-end GitOps loop:** CI in the app repo builds + pushes the image to ECR, commits the new tag cross-repo into the deploy repo, ArgoCD in the platform tier reconciles. Every trade-off documented in **Architecture Decision Records** across both V2 repos — see also the running [incident postmortem log](https://github.com/BinHsu/aegis-aws-landing-zone/blob/main/docs/incidents.md) and [recruiter-oriented competency notes](https://github.com/BinHsu/aegis-aws-landing-zone/blob/main/docs/interview-notes.md).
+
+**Stack:** cross-platform C++ inference engine (whisper.cpp + gRPC), Go BFF gateway, TypeScript React frontend; AWS Organizations + OUs + SCPs + Identity Center on the fabric; EKS + Karpenter + ArgoCD + observability on the platform tier (extracted from landing-zone per ADR-033). **DevSecOps** on the fabric (SCPs, zero static credentials, OIDC federation, gitleaks/push-protection); **GitOps** on the platform; **FinOps** end-to-end (budget alerts, teardown automation, spot-first compute, ~$5/month baseline).
 
 ---
 
