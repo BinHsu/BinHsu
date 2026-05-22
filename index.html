@@ -331,18 +331,24 @@
     white-space: nowrap;
   }
   .topology-table td.industry { color: var(--slate); }
-  .topology-table td.status { color: #166534; font-weight: 600; white-space: nowrap; }
   .topology-table td.stack { color: var(--slate); }
-  .topology-table td.repo a { color: var(--slate); text-decoration: none; }
-  .topology-table td.repo a:hover { color: var(--accent); }
-  .topology-table td.repo code {
-    font-size: 12.5px;
-    background: var(--light);
-    padding: 2px 6px;
-    border-radius: 4px;
+  .topology-table td.repo a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--slate);
+    text-decoration: none;
+    padding: 5px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--white);
     white-space: nowrap;
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    transition: border-color 0.15s, color 0.15s;
   }
+  .topology-table td.repo a:hover { color: var(--accent); border-color: var(--accent); }
+  .topology-table td.repo a svg { fill: currentColor; flex-shrink: 0; }
 
   /* ── Responsive ── */
   @media (max-width: 520px) {
@@ -358,8 +364,7 @@
     }
     .topology-table tr:last-child { border-bottom: none; }
     .topology-table td { padding: 3px 0; border: none; }
-    .topology-table td.repo { font-size: 14px; margin-bottom: 4px; }
-    .topology-table td.status { font-size: 12px; color: #166534; font-weight: 600; margin-bottom: 4px; }
+    .topology-table td.repo { margin-bottom: 8px; }
     .topology-table td.stack { font-size: 13px; }
     .topology-table td.industry { font-size: 12.5px; color: var(--muted); margin-top: 4px; }
     .topology-table td.tier { font-size: 12.5px; color: var(--muted); margin-bottom: 6px; }
@@ -480,7 +485,6 @@
       <thead>
         <tr>
           <th>Repo</th>
-          <th>Status</th>
           <th>Stack</th>
           <th>Industry name</th>
           <th>Tier</th>
@@ -488,29 +492,25 @@
       </thead>
       <tbody>
         <tr>
-          <td class="repo"><a href="https://github.com/BinHsu/aegis-aws-landing-zone" target="_blank" rel="noopener"><code>aegis-aws-landing-zone</code></a></td>
-          <td class="status">Near Production</td>
+          <td class="repo"><a href="https://github.com/BinHsu/aegis-aws-landing-zone" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>aegis-aws-landing-zone</a></td>
           <td class="stack">Organizations &middot; OUs &middot; SCPs &middot; Identity Center &middot; GitHub OIDC &middot; security baseline</td>
           <td class="industry">Landing Zone <span style="color: var(--muted);">(AWS Control Tower)</span></td>
           <td class="tier">Account fabric</td>
         </tr>
         <tr>
-          <td class="repo"><a href="https://github.com/BinHsu/aegis-platform" target="_blank" rel="noopener"><code>aegis-platform</code></a></td>
-          <td class="status">Near Production</td>
+          <td class="repo"><a href="https://github.com/BinHsu/aegis-platform" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>aegis-platform</a></td>
           <td class="stack">EKS + Karpenter &middot; ArgoCD &middot; observability <span style="color: var(--muted);">(extracted from landing-zone per ADR-033)</span></td>
           <td class="industry">Platform engineering <span style="color: var(--muted);">/ paved road / IDP</span></td>
           <td class="tier">Platform</td>
         </tr>
         <tr>
-          <td class="repo"><a href="https://github.com/BinHsu/aegis-core" target="_blank" rel="noopener"><code>aegis-core</code></a></td>
-          <td class="status">Near Production</td>
+          <td class="repo"><a href="https://github.com/BinHsu/aegis-core" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>aegis-core</a></td>
           <td class="stack">C++ + whisper.cpp (gRPC) &middot; Go BFF gateway &middot; TypeScript React &middot; dual-mode LAN/Cloud</td>
           <td class="industry">Application repo</td>
           <td class="tier">Workload &mdash; app</td>
         </tr>
         <tr>
-          <td class="repo"><a href="https://github.com/BinHsu/aegis-core-deploy" target="_blank" rel="noopener"><code>aegis-core-deploy</code></a></td>
-          <td class="status">Near Production</td>
+          <td class="repo"><a href="https://github.com/BinHsu/aegis-core-deploy" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>aegis-core-deploy</a></td>
           <td class="stack">K8s manifests for the application</td>
           <td class="industry">Config repo <span style="color: var(--muted);">(two-repo GitOps, Weaveworks)</span></td>
           <td class="tier">Workload &mdash; deploy</td>

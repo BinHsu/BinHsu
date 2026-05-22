@@ -8,26 +8,26 @@ and **platform infrastructure** (5 yrs — 155 CI/CD pipelines, Kubernetes, 5 AW
 
 ---
 
-#### V1 — Aegis Prompter (LAN)
+#### V1 — Aegis Prompter (LAN) `[Shipped]`
 
-| Repo | Status | Stack |
-|---|---|---|
-| [**Aegis-Prompter**](https://github.com/BinHsu/Aegis-Prompter) | Shipped | Python · MLX-Whisper · Sentence Transformers · Streamlit · Apple NPU |
+| Repo | Stack |
+|---|---|
+| [**Aegis-Prompter**](https://github.com/BinHsu/Aegis-Prompter) | Python · MLX-Whisper · Sentence Transformers · Streamlit · Apple NPU |
 
 A proof-of-concept teleprompter built in 2 days — Apple Silicon NPU transcription, vector-semantic RAG (pure numpy, no external DB), and a multi-role web UI where staff inject tactical cues into the speaker's display in under 0.5s.
 
 ---
 
-#### V2 — Four-Tier Multi-Repo GitOps
+#### V2 — Four-Tier Multi-Repo GitOps `[Near Production]`
 
 Industry-aligned split across four tiers, each with its own repo and ownership boundary:
 
-| Repo | Status | Stack | Industry name | Tier |
-|---|---|---|---|---|
-| [**aegis-aws-landing-zone**](https://github.com/BinHsu/aegis-aws-landing-zone) | Near Production | Organizations · OUs · SCPs · Identity Center · GitHub OIDC · security baseline | **Landing Zone** (AWS Control Tower) | Account fabric |
-| [**aegis-platform**](https://github.com/BinHsu/aegis-platform) | Near Production | EKS + Karpenter · ArgoCD · observability *(extracted from landing-zone per ADR-033)* | **Platform engineering** / paved road / IDP | Platform |
-| [**aegis-core**](https://github.com/BinHsu/aegis-core) | Near Production | C++ + whisper.cpp (gRPC) · Go BFF gateway · TypeScript React; dual-mode LAN/Cloud | **Application repo** | Workload — app |
-| [**aegis-core-deploy**](https://github.com/BinHsu/aegis-core-deploy) | Near Production | K8s manifests for the application | **Config repo** (two-repo GitOps, Weaveworks) | Workload — deploy |
+| Repo | Stack | Industry name | Tier |
+|---|---|---|---|
+| [**aegis-aws-landing-zone**](https://github.com/BinHsu/aegis-aws-landing-zone) | Organizations · OUs · SCPs · Identity Center · GitHub OIDC · security baseline | **Landing Zone** (AWS Control Tower) | Account fabric |
+| [**aegis-platform**](https://github.com/BinHsu/aegis-platform) | EKS + Karpenter · ArgoCD · observability *(extracted from landing-zone per ADR-033)* | **Platform engineering** / paved road / IDP | Platform |
+| [**aegis-core**](https://github.com/BinHsu/aegis-core) | C++ + whisper.cpp (gRPC) · Go BFF gateway · TypeScript React; dual-mode LAN/Cloud | **Application repo** | Workload — app |
+| [**aegis-core-deploy**](https://github.com/BinHsu/aegis-core-deploy) | K8s manifests for the application | **Config repo** (two-repo GitOps, Weaveworks) | Workload — deploy |
 
 **End-to-end GitOps loop:** CI in the app repo builds + pushes the image to ECR, commits the new tag cross-repo into the deploy repo, ArgoCD in the platform tier reconciles. Every trade-off documented in **Architecture Decision Records** across both V2 repos — see also the running [incident postmortem log](https://github.com/BinHsu/aegis-aws-landing-zone/blob/main/docs/incidents.md) and [recruiter-oriented competency notes](https://github.com/BinHsu/aegis-aws-landing-zone/blob/main/docs/interview-notes.md).
 
