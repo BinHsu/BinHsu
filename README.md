@@ -22,12 +22,12 @@ A proof-of-concept teleprompter built in 2 days — Apple Silicon NPU transcript
 
 Industry-aligned split across four tiers, each with its own repo and ownership boundary:
 
-| Tier | Industry name | Stack | Repo |
-|---|---|---|---|
-| Account fabric | **Landing Zone** (AWS Control Tower) | Organizations · OUs · SCPs · Identity Center · GitHub OIDC · security baseline | [aegis-aws-landing-zone](https://github.com/BinHsu/aegis-aws-landing-zone) |
-| Platform | **Platform engineering** / paved road / IDP | EKS + Karpenter · ArgoCD · observability *(extracted from landing-zone per ADR-033)* | [aegis-platform](https://github.com/BinHsu/aegis-platform) |
-| Workload — app | **Application repo** | C++ + whisper.cpp (gRPC) · Go BFF gateway · TypeScript React; dual-mode LAN/Cloud | [aegis-core](https://github.com/BinHsu/aegis-core) |
-| Workload — deploy | **Config repo** (two-repo GitOps, Weaveworks) | K8s manifests for the application | [aegis-core-deploy](https://github.com/BinHsu/aegis-core-deploy) |
+| Repo | Status | Stack | Industry name | Tier |
+|---|---|---|---|---|
+| [**aegis-aws-landing-zone**](https://github.com/BinHsu/aegis-aws-landing-zone) | Near Production | Organizations · OUs · SCPs · Identity Center · GitHub OIDC · security baseline | **Landing Zone** (AWS Control Tower) | Account fabric |
+| [**aegis-platform**](https://github.com/BinHsu/aegis-platform) | Near Production | EKS + Karpenter · ArgoCD · observability *(extracted from landing-zone per ADR-033)* | **Platform engineering** / paved road / IDP | Platform |
+| [**aegis-core**](https://github.com/BinHsu/aegis-core) | Near Production | C++ + whisper.cpp (gRPC) · Go BFF gateway · TypeScript React; dual-mode LAN/Cloud | **Application repo** | Workload — app |
+| [**aegis-core-deploy**](https://github.com/BinHsu/aegis-core-deploy) | Near Production | K8s manifests for the application | **Config repo** (two-repo GitOps, Weaveworks) | Workload — deploy |
 
 **End-to-end GitOps loop:** CI in the app repo builds + pushes the image to ECR, commits the new tag cross-repo into the deploy repo, ArgoCD in the platform tier reconciles. Every trade-off documented in **Architecture Decision Records** across both V2 repos — see also the running [incident postmortem log](https://github.com/BinHsu/aegis-aws-landing-zone/blob/main/docs/incidents.md) and [recruiter-oriented competency notes](https://github.com/BinHsu/aegis-aws-landing-zone/blob/main/docs/interview-notes.md).
 

@@ -331,6 +331,7 @@
     white-space: nowrap;
   }
   .topology-table td.industry { color: var(--slate); }
+  .topology-table td.status { color: #166534; font-weight: 600; white-space: nowrap; }
   .topology-table td.stack { color: var(--slate); }
   .topology-table td.repo a { color: var(--slate); text-decoration: none; }
   .topology-table td.repo a:hover { color: var(--accent); }
@@ -357,10 +358,11 @@
     }
     .topology-table tr:last-child { border-bottom: none; }
     .topology-table td { padding: 3px 0; border: none; }
-    .topology-table td.tier { font-size: 14px; margin-bottom: 4px; }
-    .topology-table td.industry { font-size: 12.5px; color: var(--muted); margin-bottom: 6px; }
+    .topology-table td.repo { font-size: 14px; margin-bottom: 4px; }
+    .topology-table td.status { font-size: 12px; color: #166534; font-weight: 600; margin-bottom: 4px; }
     .topology-table td.stack { font-size: 13px; }
-    .topology-table td.repo { margin-top: 4px; }
+    .topology-table td.industry { font-size: 12.5px; color: var(--muted); margin-top: 4px; }
+    .topology-table td.tier { font-size: 12.5px; color: var(--muted); margin-bottom: 6px; }
   }
   @media (max-width: 520px) {
     body { padding: 32px 16px 32px; }
@@ -477,36 +479,41 @@
     <table class="topology-table">
       <thead>
         <tr>
-          <th>Tier</th>
-          <th>Industry name</th>
-          <th>Stack</th>
           <th>Repo</th>
+          <th>Status</th>
+          <th>Stack</th>
+          <th>Industry name</th>
+          <th>Tier</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td class="tier">Account fabric</td>
-          <td class="industry">Landing Zone <span style="color: var(--muted);">(AWS Control Tower)</span></td>
-          <td class="stack">Organizations &middot; OUs &middot; SCPs &middot; Identity Center &middot; GitHub OIDC &middot; security baseline</td>
           <td class="repo"><a href="https://github.com/BinHsu/aegis-aws-landing-zone" target="_blank" rel="noopener"><code>aegis-aws-landing-zone</code></a></td>
+          <td class="status">Near Production</td>
+          <td class="stack">Organizations &middot; OUs &middot; SCPs &middot; Identity Center &middot; GitHub OIDC &middot; security baseline</td>
+          <td class="industry">Landing Zone <span style="color: var(--muted);">(AWS Control Tower)</span></td>
+          <td class="tier">Account fabric</td>
         </tr>
         <tr>
-          <td class="tier">Platform</td>
-          <td class="industry">Platform engineering <span style="color: var(--muted);">/ paved road / IDP</span></td>
-          <td class="stack">EKS + Karpenter &middot; ArgoCD &middot; observability <span style="color: var(--muted);">(extracted from landing-zone per ADR-033)</span></td>
           <td class="repo"><a href="https://github.com/BinHsu/aegis-platform" target="_blank" rel="noopener"><code>aegis-platform</code></a></td>
+          <td class="status">Near Production</td>
+          <td class="stack">EKS + Karpenter &middot; ArgoCD &middot; observability <span style="color: var(--muted);">(extracted from landing-zone per ADR-033)</span></td>
+          <td class="industry">Platform engineering <span style="color: var(--muted);">/ paved road / IDP</span></td>
+          <td class="tier">Platform</td>
         </tr>
         <tr>
-          <td class="tier">Workload &mdash; app</td>
-          <td class="industry">Application repo</td>
-          <td class="stack">C++ + whisper.cpp (gRPC) &middot; Go BFF gateway &middot; TypeScript React &middot; dual-mode LAN/Cloud</td>
           <td class="repo"><a href="https://github.com/BinHsu/aegis-core" target="_blank" rel="noopener"><code>aegis-core</code></a></td>
+          <td class="status">Near Production</td>
+          <td class="stack">C++ + whisper.cpp (gRPC) &middot; Go BFF gateway &middot; TypeScript React &middot; dual-mode LAN/Cloud</td>
+          <td class="industry">Application repo</td>
+          <td class="tier">Workload &mdash; app</td>
         </tr>
         <tr>
-          <td class="tier">Workload &mdash; deploy</td>
-          <td class="industry">Config repo <span style="color: var(--muted);">(two-repo GitOps, Weaveworks)</span></td>
-          <td class="stack">K8s manifests for the application</td>
           <td class="repo"><a href="https://github.com/BinHsu/aegis-core-deploy" target="_blank" rel="noopener"><code>aegis-core-deploy</code></a></td>
+          <td class="status">Near Production</td>
+          <td class="stack">K8s manifests for the application</td>
+          <td class="industry">Config repo <span style="color: var(--muted);">(two-repo GitOps, Weaveworks)</span></td>
+          <td class="tier">Workload &mdash; deploy</td>
         </tr>
       </tbody>
     </table>
