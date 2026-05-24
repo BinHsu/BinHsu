@@ -35,6 +35,16 @@ Industry-aligned split across four tiers, each with its own repo and ownership b
 
 ---
 
+#### Foundation — Aegis-Template `[GitHub Template]`
+
+| Repo | Stack |
+|---|---|
+| [**aegis-template**](https://github.com/BinHsu/aegis-template) | CLAUDE.md / AGENTS.md agent rules · pre-commit secret hooks · semgrep · GitHub Actions · tool registry |
+
+A reusable GitHub **template repository** implementing the **Harness Engineering 7 security practices** (Rule → Execution → Verification): least-privilege agent tool access, secrets-residue scanning, a destructive-action red line (preview → confirm → log), and a production-grade tool registry. "Use this template" starts any new repo with the full DevSecOps harness already wired — the friction differential does the work, not a checklist nobody reads.
+
+---
+
 Based in **Berlin** · **Chancenkarte** — in-country Blue Card conversion upon contract · Open to relocate across Germany
 
 [binhsu.org](https://binhsu.org) · [LinkedIn](https://www.linkedin.com/in/bin-hsu-taiwan/) · [YouTube](https://www.youtube.com/@BHDailyPov)
