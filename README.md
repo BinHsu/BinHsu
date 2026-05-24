@@ -41,7 +41,7 @@ Industry-aligned split across four tiers, each with its own repo and ownership b
 |---|---|
 | [**aegis-template**](https://github.com/BinHsu/aegis-template) | CLAUDE.md / AGENTS.md agent rules · pre-commit secret hooks · semgrep · GitHub Actions · tool registry |
 
-A reusable GitHub **template repository** implementing the **Harness Engineering 7 security practices** (Rule → Execution → Verification): least-privilege agent tool access, secrets-residue scanning, a destructive-action red line (preview → confirm → log), and a production-grade tool registry. "Use this template" starts any new repo with the full DevSecOps harness already wired — the friction differential does the work, not a checklist nobody reads.
+A reusable GitHub **template repository** implementing the [**Harness Engineering 7 security practices**](https://github.com/BinHsu/aegis-template/blob/main/docs/SECURITY_PRACTICES.md) (Rule → Execution → Verification): least-privilege agent tool access, secrets-residue scanning, a destructive-action red line (preview → confirm → log), and a production-grade tool registry. "Use this template" starts any new repo with the full DevSecOps harness already wired — the friction differential does the work, not a checklist nobody reads.
 
 ---
 
