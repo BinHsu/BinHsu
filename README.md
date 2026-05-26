@@ -24,12 +24,12 @@ Industry-aligned split across four tiers, each with its own repo and ownership b
 
 | Repo | Stack | Industry name | Tier |
 |---|---|---|---|
-| [**aegis-aws-landing-zone**](https://github.com/BinHsu/aegis-aws-landing-zone) | Organizations · OUs · SCPs · Identity Center · GitHub OIDC · security baseline | **Landing Zone** (AWS Control Tower) | Account fabric |
-| [**aegis-platform**](https://github.com/BinHsu/aegis-platform) | EKS + Karpenter · ArgoCD · observability *(extracted from landing-zone per ADR-033)* | **Platform engineering** / paved road / IDP | Platform |
+| [**aegis-landing-zone-aws**](https://github.com/BinHsu/aegis-landing-zone-aws) | Organizations · OUs · SCPs · Identity Center · GitHub OIDC · security baseline | **Landing Zone** (AWS Control Tower) | Account fabric |
+| [**aegis-platform-aws**](https://github.com/BinHsu/aegis-platform-aws) | EKS + Karpenter · ArgoCD · observability *(extracted from landing-zone per ADR-033)* | **Platform engineering** / paved road / IDP | Platform |
 | [**aegis-core**](https://github.com/BinHsu/aegis-core) | C++ + whisper.cpp (gRPC) · Go BFF gateway · TypeScript React; dual-mode LAN/Cloud | **Application repo** | Workload — app |
 | [**aegis-core-deploy**](https://github.com/BinHsu/aegis-core-deploy) | K8s manifests for the application | **Config repo** (two-repo GitOps, Weaveworks) | Workload — deploy |
 
-**End-to-end GitOps loop:** CI in the app repo builds + pushes the image to ECR, commits the new tag cross-repo into the deploy repo, ArgoCD in the platform tier reconciles. Every trade-off documented in **Architecture Decision Records** across both V2 repos — see also the running [incident postmortem log](https://github.com/BinHsu/aegis-aws-landing-zone/blob/main/docs/incidents.md) and [recruiter-oriented competency notes](https://github.com/BinHsu/aegis-aws-landing-zone/blob/main/docs/interview-notes.md).
+**End-to-end GitOps loop:** CI in the app repo builds + pushes the image to ECR, commits the new tag cross-repo into the deploy repo, ArgoCD in the platform tier reconciles. Every trade-off documented in **Architecture Decision Records** across both V2 repos — see also the running [incident postmortem log](https://github.com/BinHsu/aegis-landing-zone-aws/blob/main/docs/incidents.md) and [recruiter-oriented competency notes](https://github.com/BinHsu/aegis-landing-zone-aws/blob/main/docs/interview-notes.md).
 
 **DevSecOps** lives on the account fabric (SCPs, zero static credentials, OIDC federation, gitleaks/push-protection); **GitOps** moves with the platform tier; **FinOps** spans both (budget alerts, destroy automation, spot-first compute, ~$5/month baseline).
 
