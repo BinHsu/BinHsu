@@ -47,7 +47,7 @@ A reusable GitHub **template repository** implementing the [**Harness Engineerin
 
 Based in **Berlin** · **Chancenkarte** — in-country Blue Card conversion upon contract · Open to relocate across Germany
 
-[binhsu.org](https://binhsu.org) · [LinkedIn](https://www.linkedin.com/in/bin-hsu-taiwan/) · [YouTube](https://www.youtube.com/@BHDailyPov)
+[binhsu.org](https://binhsu.org) · [Bin's Lab](https://binhsu.github.io) · [LinkedIn](https://www.linkedin.com/in/bin-hsu-taiwan/) · [YouTube](https://www.youtube.com/@BHDailyPov)
 
 ---
 
