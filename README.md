@@ -45,6 +45,16 @@ A reusable GitHub **template repository** implementing the [**Harness Engineerin
 
 ---
 
+#### Tools — Small, Sharp Utilities
+
+Single-purpose command-line utilities, built when an existing tool didn't fit — cross-platform, run locally, tested.
+
+| Repo | Stack | Description |
+|---|---|---|
+| [**aegis-yt-transcriber**](https://github.com/BinHsu/aegis-yt-transcriber) | Python · yt-dlp · faster-whisper / mlx-whisper · uv · pytest (BVA) · GitHub Actions (3-OS matrix) | Turn a YouTube URL into a transcript locally — even when captions are disabled. Cross-platform (macOS / Linux / Windows); the audio never leaves your machine. |
+
+---
+
 Based in **Berlin** · **Chancenkarte** — in-country Blue Card conversion upon contract · Open to relocate across Germany
 
 [binhsu.org](https://binhsu.org) · [Bin's Lab](https://binhsu.github.io) · [LinkedIn](https://www.linkedin.com/in/bin-hsu-taiwan/) · [YouTube](https://www.youtube.com/@BHDailyPov)
