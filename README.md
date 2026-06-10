@@ -1,3 +1,12 @@
+<!--
+  Repo role (BinHsu/BinHsu — special GitHub profile repo):
+  - README.md  -> renders as the GitHub profile page (github.com/BinHsu)
+  - index.html -> reference copy for the personal homepage (binhsu.org);
+                  NOT served from this repo (no Pages here — binhsu.org is
+                  served by BinHsu/BinHsu.github.io)
+  The job-application resume is a SEPARATE artifact with a different purpose:
+  2026Job/templates/resume.html — do not sync the two.
+-->
 ### Hi, I'm Pin-Feng (Bin) Hsu
 
 **Hands-on Platform Engineer** with **15 years** spanning two domains:
