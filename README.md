@@ -44,7 +44,9 @@ Industry-aligned split across four tiers, each with its own repo and ownership b
 
 ---
 
-#### Foundation — Aegis-Template `[GitHub Template]`
+#### Foundation — Secure-by-Default Templates
+
+Reusable template repositories that wire a hardened default — security harness, agent rules, CI gates — into a new project from commit zero.
 
 | Repo | Stack | Description |
 |---|---|---|
@@ -62,7 +64,9 @@ Single-purpose command-line utilities, built when an existing tool didn't fit �
 
 ---
 
-#### Spike — Talos on Apple's `container` runtime `[Research]`
+#### Spike — Research & Field Experiments
+
+Time-boxed spikes that take one hard question to a verified answer, then ship the findings as a field report — proof over polish.
 
 | Repo | Stack | Description |
 |---|---|---|
