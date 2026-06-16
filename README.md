@@ -46,11 +46,9 @@ Industry-aligned split across four tiers, each with its own repo and ownership b
 
 #### Foundation — Aegis-Template `[GitHub Template]`
 
-| Repo | Stack |
-|---|---|
-| [**aegis-template**](https://github.com/BinHsu/aegis-template) | CLAUDE.md / AGENTS.md agent rules · pre-commit secret hooks · semgrep · GitHub Actions · tool registry |
-
-A reusable GitHub **template repository** implementing the [**Harness Engineering 7 security practices**](https://github.com/BinHsu/aegis-template/blob/main/docs/SECURITY_PRACTICES.md) (Rule → Execution → Verification): least-privilege agent tool access, secrets-residue scanning, a destructive-action red line (preview → confirm → log), and a production-grade tool registry. "Use this template" starts any new repo with the full DevSecOps harness already wired — the friction differential does the work, not a checklist nobody reads.
+| Repo | Stack | Description |
+|---|---|---|
+| [**aegis-template**](https://github.com/BinHsu/aegis-template) | CLAUDE.md / AGENTS.md agent rules · pre-commit secret hooks · semgrep · GitHub Actions · tool registry | A GitHub **template repository** implementing the [Harness Engineering 7 security practices](https://github.com/BinHsu/aegis-template/blob/main/docs/SECURITY_PRACTICES.md) (Rule → Execution → Verification): least-privilege agent tool access, secrets-residue scanning, a destructive-action red line (preview → confirm → log), and a tool registry. "Use this template" wires the full DevSecOps harness into any new repo — the friction differential does the work, not a checklist nobody reads. |
 
 ---
 
@@ -66,11 +64,9 @@ Single-purpose command-line utilities, built when an existing tool didn't fit �
 
 #### Spike — Talos on Apple's `container` runtime `[Research]`
 
-| Repo | Stack |
-|---|---|
-| [**aegis-talos-apple-container-provisioner**](https://github.com/BinHsu/aegis-talos-apple-container-provisioner) | Go · Talos `pkg/provision` · Apple `container` (OCI micro-VMs) · DHCP reconciliation · GitHub Actions |
-
-Can a local Talos cluster run on Apple's `container` runtime — no Docker daemon, one micro-VM per node? It can: verified end to end (`talosctl cluster create apple-container` → healthy cluster → nginx HTTP 200 → clean teardown). The crux was networking — apple/container assigns IPs by DHCP, which breaks Talos's static-IP-at-create contract, so the provider owns `Create` and reconciles the address after boot. Pitched upstream and declined on principled grounds (no macOS CI; container mode is a documented dev/CI path) — [discussion #13587](https://github.com/siderolabs/talos/discussions/13587). The write-up is the deliverable: [**A native Talos provider for Apple's container runtime**](https://binhsu.github.io/a-native-talos-provider-for-apple-container/).
+| Repo | Stack | Description |
+|---|---|---|
+| [**aegis-talos-apple-container-provisioner**](https://github.com/BinHsu/aegis-talos-apple-container-provisioner) | Go · Talos `pkg/provision` · Apple `container` (OCI micro-VMs) · DHCP reconciliation · GitHub Actions | A local Talos cluster on Apple's `container` runtime — no Docker daemon, one micro-VM per node. Verified end to end (`talosctl cluster create apple-container` → nginx HTTP 200 → clean teardown). The crux is networking: apple/container assigns IPs by DHCP, breaking Talos's static-IP-at-create contract, so the provider owns `Create` and reconciles the address after boot. Pitched upstream, declined on principled grounds — [discussion #13587](https://github.com/siderolabs/talos/discussions/13587). Write-up: [Bin's Lab](https://binhsu.github.io/a-native-talos-provider-for-apple-container/). |
 
 ---
 
