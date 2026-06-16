@@ -64,6 +64,16 @@ Single-purpose command-line utilities, built when an existing tool didn't fit �
 
 ---
 
+#### Spike — Talos on Apple's `container` runtime `[Research]`
+
+| Repo | Stack |
+|---|---|
+| [**aegis-talos-apple-container-provisioner**](https://github.com/BinHsu/aegis-talos-apple-container-provisioner) | Go · Talos `pkg/provision` · Apple `container` (OCI micro-VMs) · DHCP reconciliation · GitHub Actions |
+
+Can a local Talos cluster run on Apple's `container` runtime — no Docker daemon, one micro-VM per node? It can: verified end to end (`talosctl cluster create apple-container` → healthy cluster → nginx HTTP 200 → clean teardown). The crux was networking — apple/container assigns IPs by DHCP, which breaks Talos's static-IP-at-create contract, so the provider owns `Create` and reconciles the address after boot. Pitched upstream and declined on principled grounds (no macOS CI; container mode is a documented dev/CI path) — [discussion #13587](https://github.com/siderolabs/talos/discussions/13587). The write-up is the deliverable: [**A native Talos provider for Apple's container runtime**](https://binhsu.github.io/a-native-talos-provider-for-apple-container/).
+
+---
+
 Based in **Berlin** · **Chancenkarte** — in-country Blue Card conversion upon contract · Open to relocate across Germany
 
 [binhsu.org](https://binhsu.org) · [Bin's Lab](https://binhsu.github.io) · [LinkedIn](https://www.linkedin.com/in/bin-hsu-taiwan/) · [YouTube](https://www.youtube.com/@BHDailyPov)
