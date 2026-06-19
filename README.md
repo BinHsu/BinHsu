@@ -29,7 +29,9 @@ A proof-of-concept teleprompter built in 2 days — Apple Silicon NPU transcript
 
 ---
 
-#### V2 — Four-Tier Multi-Repo GitOps `[Near Production]`
+#### V2 — Four-Tier Multi-Repo GitOps `[Dual-Region Staging Validated]`
+
+> **WS4 (2026-06-19):** end-to-end validated on dual-region staging (eu-central-1 + eu-west-1) — EKS Pod Identity, Crossplane v2, OIDC/PKCE, audio→text transcription. Staging torn down to $0; ephemeral by cost design.
 
 Industry-aligned split across four tiers, each with its own repo and ownership boundary:
 
