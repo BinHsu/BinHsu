@@ -9,7 +9,7 @@
 -->
 ### Hi, I'm Pin-Feng (Bin) Hsu
 
-**Hands-on Platform Engineer** with **15 years** spanning two domains:
+**Hands-on Engineer** with **15 years** spanning two domains:
 **C++ systems** (10 yrs — embedded Linux, CMake, ARM/MIPS/x86, deployed across 120+ countries)
 and **platform infrastructure** (5 yrs — 155 CI/CD pipelines, Kubernetes, 5 AWS accounts, 4-5M req/day, end-to-end ownership with full system context).
 
