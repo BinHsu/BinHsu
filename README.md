@@ -34,7 +34,7 @@ Industry-aligned split across four tiers, each with its own repo and ownership b
 | Repo | Stack | Industry name | Tier |
 |---|---|---|---|
 | [**aegis-landing-zone-aws**](https://github.com/BinHsu/aegis-landing-zone-aws) | Organizations · OUs · SCPs · Identity Center · GitHub OIDC · security baseline | **Landing Zone** (AWS Control Tower) | Account fabric |
-| [**aegis-platform-aws**](https://github.com/BinHsu/aegis-platform-aws) | EKS + Karpenter · ArgoCD · observability *(extracted from landing-zone per ADR-033)* | **Platform engineering** / paved road / IDP | Platform |
+| [**aegis-platform-aws**](https://github.com/BinHsu/aegis-platform-aws) | EKS + Karpenter · ArgoCD · observability *(extracted from landing-zone per ADR-017)* | **Platform engineering** / paved road / IDP | Platform |
 | [**aegis-core**](https://github.com/BinHsu/aegis-core) | C++ + whisper.cpp (gRPC) · Go BFF gateway · TypeScript React; dual-mode LAN/Cloud | **Application repo** | Workload — app |
 | [**aegis-core-deploy**](https://github.com/BinHsu/aegis-core-deploy) | K8s manifests for the application | **Config repo** (two-repo GitOps, Weaveworks) | Workload — deploy |
 
