@@ -1,9 +1,7 @@
 <!--
   Repo role (BinHsu/BinHsu — special GitHub profile repo):
   - README.md  -> renders as the GitHub profile page (github.com/BinHsu)
-  - index.html -> reference copy for the personal homepage (binhsu.org);
-                  NOT served from this repo (no Pages here — binhsu.org is
-                  served by BinHsu/BinHsu.github.io)
+  - index.html -> the live personal homepage at binhsu.org (this file is the source of truth)
   The job-application resume is a SEPARATE artifact with a different purpose:
   2026Job/templates/resume.html — do not sync the two.
 -->
@@ -74,7 +72,8 @@ Time-boxed spikes that take one hard question to a verified answer, then ship th
 
 | Repo | Stack | Description |
 |---|---|---|
-| [**aegis-talos-apple-container-provisioner**](https://github.com/BinHsu/aegis-talos-apple-container-provisioner) | Go · Talos `pkg/provision` · Apple `container` (OCI micro-VMs) · DHCP reconciliation · GitHub Actions | A local Talos cluster on Apple's `container` runtime — no Docker daemon, one micro-VM per node. Verified end to end (`talosctl cluster create apple-container` → nginx HTTP 200 → clean teardown). The crux is networking: apple/container assigns IPs by DHCP, breaking Talos's static-IP-at-create contract, so the provider owns `Create` and reconciles the address after boot. Pitched upstream, declined on principled grounds — [discussion #13587](https://github.com/siderolabs/talos/discussions/13587). Write-up: [Bin's Lab](https://binhsu.github.io/a-native-talos-provider-for-apple-container/). |
+| [**aegis-apple-container-provisioner-talos**](https://github.com/BinHsu/aegis-apple-container-provisioner-talos) | Go · Talos `pkg/provision` · Apple `container` (OCI micro-VMs) · DHCP reconciliation · GitHub Actions | A local Talos cluster on Apple's `container` runtime — no Docker daemon, one micro-VM per node. Verified end to end (`talosctl cluster create apple-container` → nginx HTTP 200 → clean teardown). The crux is networking: apple/container assigns IPs by DHCP, breaking Talos's static-IP-at-create contract, so the provider owns `Create` and reconciles the address after boot. Pitched upstream, declined on principled grounds — [discussion #13587](https://github.com/siderolabs/talos/discussions/13587). Write-up: [Bin's Lab](https://binhsu.github.io/a-native-talos-provider-for-apple-container/). |
+| [**aegis-apple-container-provisioner-k3s**](https://github.com/BinHsu/aegis-apple-container-provisioner-k3s) | Go · k3s · Apple `container` (OCI micro-VMs) · external etcd (mutual TLS) · haproxy API LB · GitHub Actions | A local k3s cluster on Apple's `container` runtime — one micro-VM per node, no Docker daemon. HA control plane via an auto-provisioned 3-node external etcd quorum (mutual TLS) behind an haproxy L4 API load balancer, plus day-2 ops (snapshot/restore, rolling upgrade/rollback, cert/token rotation). The k3s sibling of the Talos spike on the same substrate — k3s's pluggable datastore makes external-etcd HA the natural design (embedded etcd is IP-bound and dies on the vmnet DHCP shift). |
 
 ---
 
